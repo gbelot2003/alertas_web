@@ -1,0 +1,54 @@
+<?php Print Tag::js('alertas/alertas.add') ?>
+
+<?php print Form::Open() ?>
+<fieldset class="span12">
+	<legend>Formulario de Creación de Alerta</legend>
+
+	<div id="info" class="span11">
+		<?php View::content() ?>
+	</div>
+
+	<div class="span12">
+		<label>Titulo de la Alerta</label>
+	<?php Print Form::text('alertas.titulo', "class='span11' type='text' placeholder='Titulo de la Alerta'") ?>
+	</div>
+	<div class="span12">
+		<div class="span2">
+			<label>Numero</label>
+			<?php Print Form::text('alertas.numero', "class='span12' type='text' placeholder='Numero de Alerta'") ?>
+		</div>
+
+		<div class="span2">
+			<label>Fecha</label>
+			<?php Print Form::date('alertas.fecha', "span12") ?>
+		</div>
+		<div class="span2">
+			<label>Departamento</label>
+			<?php Print Form::dbSelect('alertas.deptos_id', NULL, NULL ) ?>
+		</div>
+
+		<div class="span2">
+			<div id="municipios_js">
+
+			</div>
+		</div>
+
+	</div>
+	<div class="span10">
+			<label>Fuente</label>
+		<?php Print Form::text('alertas.fuente', "class='span5' type='text' placeholder='Fuente'") ?>
+	</div>	
+
+	<div class="span11">
+		<?php Print Form::textarea('alertas.relato', "class='ckeditor'") ?>
+	</div>
+
+	<div class="span3">
+		<?php echo Form::hidden('alertas.usuario_id', null, $usuario_id)?>	
+		<?php echo Form::hidden('alertas.publicada_id', null, '2')?>
+		<?php Print Form::Submit('Agregar Alerta', "class='btn btn-primary form-horizontal'") ?>
+	</div>
+</fieldset>
+<?php Print Form::Close() ?>
+
+<?php View::partial('ckeditor/ckeditor') ?>

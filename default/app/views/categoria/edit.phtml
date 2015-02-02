@@ -1,0 +1,24 @@
+<?php Print Form::open() ?>
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+      <h3>Edicion de Categorias</h3>
+  </div>
+
+  <div class="modal-body">
+    <div class="span4">
+      <label>Nombre de Categoria</label>
+      <?php Print Form::hidden("acategoria.id") ?>
+      <?php Print Form::text("acategoria.acategoria", "class='span4'") ?>
+    </div>
+    <div class="span4">
+      <label>Tipo de Agresión</label>
+      <?php Print Form::dbSelect("acategoria.tipoagresion_id") ?>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <?php Print Form::submit('Salvar Cambios', "class='btn btn-primary'") ?>
+    <!--<a class="btn btn-primary" onclick="$('.modal-body > form').submit();">Guardar Cambios</a>-->
+    <a class="btn" data-dismiss="modal">Close</a>
+  </div>
+<?php Print Form::close() ?>

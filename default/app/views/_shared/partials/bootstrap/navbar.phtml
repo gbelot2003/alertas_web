@@ -1,0 +1,42 @@
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+				<?php Print Html::link("", 'Sistema de Alertas' ,"class='brand'") ?>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li <?php print $inicio ?>><?php Print Html::link("", 'Inicio' ) ?></li>
+						<li <?php print $reportes ?>><?php Print Html::link("reportes/", 'Reportes' ) ?></li>
+						<li ><?php Print Html::link("http://clibrehonduras.com/contac", 'Contactenos' ) ?></li>
+						<?php if(Auth::is_valid()): ?>
+			              <li class="active dropdown"><?php print html::link("#" , "Configuraciones<b class=caret></b>", "class='dropdown-toggle' data-toggle='dropdown'")?>
+			                  <ul class="dropdown-menu">
+			                    <li><?php print html::link('dashbord', '<i class="icon-list"></i> Listado General') ?></li>
+			                    <li><?php print html::link('configuraciones/add', '<i class="icon-plus-sign"></i> Nueva Alerta ') ?></li>
+			                    <li><?php print html::link('usuarios', '<i class="icon-user"></i> Usuarios') ?></li>
+			                    <li><?php print html::link('configuraciones/otras', '<i class="icon-tasks"></i> Otras configuraciones') ?></li>
+			                    <li><?php print html::link('logs/', '<i class="icon-flag"></i> Logs del Sistema') ?></li>
+			                    <li><?php print html::link('salir', '<i class="icon-off"></i> Cerrar Sesión') ?></li>
+			                  </ul>
+			              </li>
+			            <?php endif ?>
+					</ul>
+
+					<p class="navbar-text pull-right">
+            <?php if(Auth::is_valid()): ?>
+              <?php $user = Auth::get('usuario'); ?>
+                Logeado como : <strong><?php print $user ?></strong></a>
+          <?php else:?>
+            <?php print html::link('login', 'Iniciar Sesión', "class='link' style='color:white'") ?>
+           <?php endif ?>
+					</p>
+
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+

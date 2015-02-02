@@ -1,0 +1,121 @@
+<?php if(isset($sidebar)){$mainClass = "span9";} else {$mainClass = "span12";} ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title><?php Print $siteTitle ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Le styles -->
+  	<?php Tag::css('bootstrap2') ?>
+  	<?php Tag::css('newstyle') ?>
+  	<?php Tag::css('jquery.dataTables') ?>
+  	<?php Tag::css('TableTools') ?>
+  	<?php Tag::css('colorbox/colorbox'); ?>
+  	<!-- if navbar show this -->
+  	<?php if(isset($navbar)): ?>
+		<style type="text/css">
+			body { padding-top: 60px; padding-bottom: 40px; }
+		</style>
+	<?php else: ?>
+		<style type="text/css">
+			body { padding-top: 10px; padding-bottom: 20px; }
+			#Worksheet1_length {display: none !important;}
+		</style>
+	<?php endif; ?>
+
+	<!------------------------>
+
+  	<?php Tag::css('bootstrap-responsive') ?>
+  	<?php echo Html::includeCss() ?>
+
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script>
+	<!-- 
+		var url = '<?php Print PUBLIC_PATH ?>'
+	-->
+	</script>
+  	<?php print Tag::js("jquery/jquery.min") ?>
+	<?php print Tag::js("ScrollToFixed/jquery-scrolltofixed-min") ?>
+	<?php echo Tag::js('jquery/jquery.kumbiaphp')?>
+	
+	<?php View::partial('bootstrap/externallinks') ?>
+</head>
+
+<body>
+
+	<?php if(isset($navbar)): ?>
+		<!-- Navbar -->
+			<?php View::partial("bootstrap/navbar", NULL, array(
+																'inicio' => $inicio,
+																'reportes' => $reportes,
+																)) ?>
+		<!-- Navbar -->
+	<?php endif; ?>
+
+	<div class="container-fluid"><!-- Fluid 1 -->
+
+		<div class="row-fluid headesite"><!-- Fluid 2 -->
+			<?php if(isset($inicio)): ?>
+				<?php View::partial('bootstrap/siteheader'); ?>
+			<?php else: ?>
+					<h2><?php Print $siteTitle ?></h2>
+					<?php if(isset($posTilte)): ?>
+						<div class="span11">
+							<?php View::partial('bootstrap/posttitle/posttitle', NULL, array(
+																							'posTilte' => $posTilte
+																							)) ?>
+						</div>
+					<?php endif ?>
+			<?php endif ?>
+		</div>
+
+		<hr />
+
+		<div class="row-fluid"><!-- Fluid 2 -->
+			<?php if(isset($sidebar)): ?>
+				<div class="span3"><!-- class to change for a variable -->
+					<?php View::partial('bootstrap/sidebar', NULL, array(
+																		'estadisticas' => $estadisticas,
+																		'reportesBar' => $reportesBar,
+																		'rep_menu' => $rep_menu,
+																	)) ?>
+				</div><!--/span-->
+			<?php  endif; ?>
+
+			<div class="<?php print $mainClass ?>">
+
+				<?php if(isset($unit)): ?>
+					<!-- to add a variable  UNIT-HERO -->
+						<?php View::partial('bootstrap/unithero') ?>
+					<!-- to add a variable  UNIT-HERO -->
+				<?php endif ?>
+
+				<div class="row-fluid"><!-- Fluid main -->
+					<?php View::content() ?>
+		  		</div><!--/row main-->
+
+		</div><!--/span9-->
+
+	</div><!--/row Fluid 2-->
+
+	  	<hr>
+
+		<footer>
+			<p>&copy; Company 2012</p>
+		</footer>
+	</div><!--/.fluid-container 1-->
+
+	<!-- Le javascript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+ 	<?php print Tag::js('bootstrap') ?>
+</body>
+</html>

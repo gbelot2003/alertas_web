@@ -1,0 +1,62 @@
+<?php if ($id == NULL): ?>
+
+
+<?php echo Tag::js('jquery.dataTables')?>
+<?php echo Tag::js('TableTools')?>
+<?php echo Tag::js('ZeroClipboard')?>
+<?php echo Tag::js('reportes/alertas.tablas')?>
+
+<?php
+$resultado = 0;
+	foreach($model as $model2):
+		$resultado = $resultado + $model2->Contador;
+	endforeach;
+?>
+	<div id="enlaces"></div>
+
+	<div>
+		<?php View::partial("alertas/anios", NULL, array('page' => $pages, 'url' => $action_paht, 'anios' => $anios)) ?>
+	</div>
+	<hr />
+
+	<table class="table table-striped table-bordered" id="Worksheet1">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>Medio o Sistema</th>
+				<th>Total</th>
+				<th>%</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach($model as $model): ?>
+			<?php $porcent = ($model->Contador * 100)/ $resultado ?>
+
+			<?php if($i % 2 == 0): ?>
+			<tr class="odd">
+			<?php else: ?>
+			<tr class="even">
+			<?php endif; ?>
+				<td><?php print $i++ ?></td>
+				<td><?php print html::link($action_paht."/".$anios."/".$model->sistemaId, $model->medio) ?></td>
+				<td><?php print $model->Contador ?></td>
+				<td><?php print round($porcent, 2) ?></td>
+			</tr>
+				<?php $dataSet->addPoint(new Point("$model->medio", $model->Contador))?>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+	<hr />
+		<?php
+			$chart->setDataSet($dataSet);
+			$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 200));
+			$chart->setTitle("$title del año $anios ");
+			$chart->render($localpath."/img/graficas/$action_name-$anios.png");
+	 	?>
+			<div class="span11">
+				<?php //echo html::img("graficas/$action_name-$anios-2.png") ?>
+				<?php Print Html::link("img/graficas/$action_name-$anios.png", html::img("graficas/$action_name-$anios.png")) ?>
+			</div>
+<?php elseif(isset($id)): ?>
+	<?php Table::simple($header, $query,'class="table table-striped table-bordered"', 1) ?>
+<?php endif ?>

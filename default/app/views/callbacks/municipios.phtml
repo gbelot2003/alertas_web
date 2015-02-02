@@ -1,0 +1,6 @@
+<label>Municipio</label>
+<select id="alertas_municipios_id" name="alertas[municipios_id]">
+	<?php foreach($municipios as $munic): ?>
+		<option value="<?php Print $munic->id ?>"><?php Print $munic->municipio ?></option>
+	<?php endforeach ?>
+</select>

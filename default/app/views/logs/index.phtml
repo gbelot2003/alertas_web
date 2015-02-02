@@ -1,0 +1,28 @@
+<div class="span11">
+	<table class='table table-bordered table-hover'>
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Fecha</th>
+				<th>Usuario</th>
+				<th>Acción</th>
+				<th>Datos</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach($listItems->items as $item): ?>
+			<tr>
+				<td><?php Print $item->id ?></td>
+				<td><?php Print $item->fecha_in ?></td>
+				<td><?php Print $item->usuario ?></td>
+				<td><?php Print $item->accion ?></td>
+				<td><?php Print $item->datos ?></td>
+			</tr>
+			<?php endforeach ?>
+		</tbody>
+	</table>
+<div>
+	<?php if($listItems->prev) echo Html::linkAction("index/$listItems->prev/", '<< Anterior |'); ?>
+    <?php if($listItems->next) echo Html::linkAction("index/$listItems->next/", 'Próximo >>'); ?>
+</div>
+</div>

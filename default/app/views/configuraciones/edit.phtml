@@ -1,0 +1,131 @@
+<?php View::partial('bootstrap/modal') ?>
+<?php Print Tag::js('alertas/alertas.add') ?>
+<fieldset class="span12">
+	<legend>Formulario de Edición de Alerta</legend>
+
+	<div id="update_info" class="span11">
+		<?php View::content() ?>
+	</div>
+
+	<div class="span11 well">
+		<label>Listado de Sujetos Agredidos</label>
+		<table id="agredidos_table" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Género</th>
+					<th>Medio o Sistema</th>
+					<th>Tipo de Medio</th>
+					<th>Tipo de Sujeto Agredido</th>
+					<th>Agresión</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($alertas->agredidos as $agredidos): ?>
+				<tr>
+					<td><?php print html::link("configuraciones/agredidos_edit/$agredidos->id", "<i class='icon-pencil'></i>".$agredidos->nombre,"class='btn' data-toggle='modal'") ?></td>
+					<td><?php print $agredidos->gen->gen ?></td>
+					<td><?php print $agredidos->medio ?></td>
+					<td><?php print $agredidos->tipomediosistema->tipomediosistema ?></td>
+					<td><?php print $agredidos->tsagredido->tsagredido ?></td>
+					<td><?php print $agredidos->agresion->agresion ?></td>
+					<td><?php Print Js::linkAction("agredidos_delete/$agredidos->id/$id", '<i class="icon-remove"></i> Eliminar') ?></td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<div>
+			<?php Print html::link("configuraciones/agredidos_add/$id", "<i class='icon-plus'></i> Agregar Sujeto Agredido", "id='add' class='btn btn-primary' data-toggle='modal' data-target='#myModal'") ?>
+		</div>
+	</div>
+
+	<div class="span11 well">
+		<label>Detalles de Agresor</label>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Tipo de Agresor</th>
+					<th>Estado Juridico</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach($alertas->agresores as $agresores): ?>
+				<tr>
+					<td><?php print html::link("configuraciones/agresores_edit/$agresores->id", "<i class='icon-pencil'></i>".$agresores->nombre,"class='btn' data-toggle='modal' data-target='#myModal'") ?></td>
+					<td><?php Print $agresores->tagresor->tagresor ?></td>
+					<td><?php Print $agresores->estadojudicial->estadojudicial ?></td>
+					<td><?php Print Js::linkAction("agresores_delete/$agresores->id/$id", '<i class="icon-remove"></i> Eliminar') ?></td>
+				</tr>
+
+			<?php endforeach ?>
+			</tbody>
+		</table>
+		<div>
+			<?php Print html::link("configuraciones/agresores_add/$id", "<i class='icon-plus'></i> Agregar Sujeto Agresor", "id='add' class='btn btn-primary' data-toggle='modal' data-target='#myModal'") ?>
+		</div>
+	</div>
+
+<div>
+<?php echo form::open()?>
+	<?php echo form::hidden("alertas.id"); ?>
+	<?php echo form::hidden("alertas.created_at"); ?>
+	<?php echo form::hidden('alertas.anio'); ?>
+	<?php echo form::hidden('alertas.mes'); ?>
+
+	<div class="span12">
+		<label>Titulo de la Alerta</label>
+	<?php Print Form::text('alertas.titulo', "class='span11'") ?>
+	</div>
+
+	<div class="span12">
+		<div class="span2">
+			<label>Numero</label>
+			<?php Print Form::text('alertas.numero', "class='span12' type='text' placeholder='Numero de Alerta'") ?>
+		</div>
+
+		<div class="span2">
+			<label>Fecha</label>
+			<?php Print Form::date('alertas.fecha', "span12") ?>
+		</div>
+
+		<div class="span2">
+			<label>Departamento</label>
+			<?php Print Form::dbSelect('alertas.deptos_id', NULL, NULL ) ?>
+		</div>
+
+		<div class="span2">
+			<div id="municipios_js">
+				<label>Municipio</label>
+				<?php Print Form::dbSelect('alertas.municipios_id', NULL, NULL ) ?>
+			</div>
+		</div>
+	</div>
+
+	<div class="span10">
+			<label>Fuente</label>
+		<?php Print Form::text('alertas.fuente', "class='span5' type='text' placeholder='Fuente'") ?>
+	</div>
+
+	<div class="span10">
+		<label>Estado de la alerta</label>
+		<?php echo Form::dbSelect('alertas.publicada_id', NULL, NULL)?>
+	</div>
+
+	<div class="span11">
+		<?php Print Form::textarea('alertas.relato', "class='ckeditor'") ?>
+	</div>
+
+	<div class="span3">
+		<?php echo Form::hidden('alertas.usuario_id', null, $usuario_id)?>
+
+		<?php Print Form::Submit('Agregar Alerta', "class='btn btn-primary form-horizontal'") ?>
+	</div>
+	<?php print Form::close()?>
+	<span class="clearfix"></span>
+</div>
+</fieldset>
+
+<?php View::partial('ckeditor/ckeditor') ?>

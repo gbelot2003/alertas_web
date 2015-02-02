@@ -1,0 +1,5 @@
+vendor/*
+core
+default/app/config/config.ini
+default/app/config/databases.ini
+default/app/libs/app_controller.php

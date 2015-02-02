@@ -1,0 +1,29 @@
+<div class="tabbable">
+	<ul id="myTab" class="nav nav-tabs">
+  		<li><?php Print html::link('usuarios/edit/'.$id, "Edición General") ?></li>
+  		<li class="active" ><a href="#" data-toggle="tab">Contraseñas</a></li>
+	</ul>
+
+	<div id="editar" class="span5">
+			<?php Print Form::open() ?>
+			<div class="modal-header">
+		    	<h3>Editar Usuario</h3>
+		  	</div>
+
+			<div class="span12">
+				<label>Pass</label>
+				<?php Print Form::text('usuarios.pass') ?>
+			</div>
+
+			<div class="span12">
+				<label>Repita Pass</label>
+				<?php Print Form::text('usuarios.pass2') ?>
+			</div>
+
+		  	<?php Print Form::close() ?>
+	</div>
+	
+	<div class="modal-footer">
+		<?php Print Form::submit('Salvar Cambios', "class='btn btn-primary'") ?>
+	</div>
+</div>

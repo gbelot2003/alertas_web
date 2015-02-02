@@ -1,0 +1,14 @@
+<h4>Listado de reportes disponibles</h4>
+<ul class="menu nav nav-pills nav-stacked">
+	<li class="<?php Print $rep_menu['inicio'] ?>"><?php print html::link("reportes/", 'Area de Reportes')?></li>
+    <hr/>
+	<li class="<?php Print $rep_menu['sagredido'] ?>"><?php print html::link("reportes/sujeto_agredido", 'Tipos de Sujeto Agredido')?></li>
+    <li class="<?php Print $rep_menu['genero'] ?>"><?php print html::link("reportes/sujeto_agredido_genero", 'Reporte Por Género')?></li>
+    <li class="<?php Print $rep_menu['medio'] ?>"><?php print html::link("reportes/medio_sistema", 'Medio o Sistema')?></li>
+    <li class="<?php Print $rep_menu['tmedio'] ?>"><?php print html::link("reportes/tipo_medio_sistema", 'Tipo de Medio o Sistema')?></li>
+    <li class="<?php Print $rep_menu['adirectas'] ?>"><?php print html::link("reportes/agresiones_directas", 'Agresiones Directas')?></li>
+    <li class="<?php Print $rep_menu['aindirectas'] ?>"><?php print html::link("reportes/agresiones_indirectas", 'Agresiones Indirectas')?></li>
+    <li class="<?php Print $rep_menu['agresor'] ?>"><?php print html::link("reportes/agente_agresor", 'Tipo de Agente Agresor')?></li>
+    <li class="<?php Print $rep_menu['locacion'] ?>"><?php print html::link("reportes/locacion", 'Locació por Departamentos')?></li>
+    <li class="<?php Print $rep_menu['mes'] ?>"><?php print html::link("reportes/ocurrencias_mes", 'Ocurrencias Por Mes')?></li>
+</ul>

@@ -1,0 +1,31 @@
+<?php View::partial('bootstrap/modal') ?>
+<div id="update_info" class="span11">
+<?php view::content() ?>
+
+<div class="well">
+	<div>
+		<?php Print html::link("configuraciones/otras", "<i class=' icon-arrow-left'></i> Regresar a Configuraciones", "class='btn btn-warning'") ?>
+		<?php Print html::link("estadojudicial/add", "<i class='icon-plus'></i> Nuevo Tipo de Medio o Sistema", "id='add' class='btn btn-primary' data-toggle='modal' data-target='#myModal'") ?>
+	</div>
+</div>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>Estado Judicial</th>
+			<th>Tipo</th>
+			<th>Eliminar</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($estadojudicial as $estadojudicial): ?>
+		<tr>
+			<td><?php Print $estadojudicial->id ?></td>
+			<td><?php Print html::link("estadojudicial/edit/".$estadojudicial->id, $estadojudicial->estadojudicial, "class='edit' data-toggle='modal' data-target='#myModal'") ?></td>
+			<td><?php Print $estadojudicial->tipo ?></td>
+			<td><?php Print Js::linkAction("del/".$estadojudicial->id, '<i class="icon-remove"></i> Eliminar') ?></td>
+		</tr>
+		<?php endforeach ?>
+	</tbody>
+</table>
+</div>

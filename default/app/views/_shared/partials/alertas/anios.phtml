@@ -1,0 +1,31 @@
+
+<style type="text/css">
+	.anios {
+		list-style: none;
+	}
+</style>
+<?php if (!isset($id)) { ?>
+	<?php $alertas2 = Load::model('alertas')->getAnios(); ?>
+	<div id="anios">
+		<h6>Año de las alertas actuales</h6>
+		<ul class="anios">
+		<?php foreach ($alertas2 as $anios) : ?>
+			<li><?php echo html::link("$url/$anios->anio", $anios->anio ); ?>
+		<?php endforeach; ?>
+		</ul>
+	</div>
+<?php } else { ?>
+	<?php $alertas2 = Load::model('alertas')->getAnios(); ?>
+	<div id="anios">
+		
+		<div style="display:inline; padding:5px 0 5px 1px">
+			<?php echo html::link("$url/", "Ir al reporte anterior"); ?>
+		</div>
+		
+		<ul>
+		<?php foreach ($alertas2 as $anios) : ?>
+			<li><?php echo html::link("$url/$anios->anio/$id", $anios->anio); ?>
+		<?php endforeach; ?>
+		</ul>
+	</div>
+<?php } ?>

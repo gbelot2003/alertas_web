@@ -1,0 +1,31 @@
+<div id="google_translate_element"></div><script>
+function googleTranslateElementInit() {
+new google.translate.TranslateElement({
+pageLanguage: 'es'
+}, 'google_translate_element');
+}
+</script><script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+	$(document).ready(function() {
+  $('#sidebar-main').scrollToFixed();
+});
+</script>
+
+<?php if(isset($estadisticas)): ?>
+	<div class="well sidebar-nav alert alert-info">
+		<div>
+			<?php View::partial("alertas/aside/estadisticas") ?>
+			<p>Puedes encontrar los detalles de estas estadisticas en el area de <?php Print Html::link('reportes', 'Reportes') ?></p>
+		</div>
+	</div><!--/.well -->
+<?php endif ?>
+
+<?php if(isset($reportesBar)): ?>
+	<div id="sidebar-main" class="well sidebar-nav">
+		<div>
+			<?php View::partial('alertas/aside/reportesBar', NULL, array(
+																		'rep_menu' => $rep_menu,
+			)); ?>
+		</div>
+	</div>
+<?php endif; ?>

@@ -1,0 +1,104 @@
+<?php view::content(); ?>
+<div class="row-fluid" id="cabezera">
+	<div class="span12">
+		<div class="span4">
+			Numero de alerta : <strong style="color:blue;"><?php print $alert1->numero ?></strong>
+		</div>
+		<div class="span4">
+			Fecha de la alerta : <strong style="color:blue;"><?php print $alert1->fecha?></strong>
+		</div>
+		<div class="span4">
+			Estado Judicial de la alerta :
+			<strong style="color:red;">
+				<?php print $alert1->estado_judicial ?></strong>
+		</div>
+	</div>
+
+	<hr/>
+
+	<?php if(Auth::is_valid()):?>
+
+	<div class="btn-group well">
+
+				<?php print html::link("configuraciones/edit/$alert1->id", 'Editar <i class=" icon-pencil"></i>', "class='btn btn-info'") ?></li>
+				<?php print html::link("configuraciones/add/", 'Crear Nueva Alerta <i class="icon-plus-sign"></i>' , "class='btn btn-info'") ?></li>
+				<?php print html::link("dashbord/", 'Listado de Alertas <i class="icon-th-list"></i>', "class='btn btn-info'") ?></li>
+	</div>
+	<hr/>
+
+	<?php endif; ?>
+
+
+	<hr />
+	<div class"span12" id="detalles">
+		<div id="agredido">
+			<table class="table table-bordered table-hover">
+				<caption>Identificación de Sujetos Agredidos</caption>
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Género</th>
+						<th>Tipo de Sujeto Agredido</th>
+						<th>Tipo de Agresion</th>
+						<th>Medio o Sistema</th>
+						<th>Tipos de Medio</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($alert1->agredidos as $agredidos):?>
+					<tr>
+						<td>
+							<?php print $agredidos->nombre ?></td>
+						<td>
+							<?php $gen = $agredidos->gen->id ?>
+							<?php $tid = $agredidos->tsagredido_id?>
+							<?php print html::link("reportes/sujeto_agredido_genero/$alert1->anio/$tid/$gen", $agredidos->gen->gen)?></td>
+						<td>
+							<?php print html::link("reportes/sujeto_agredido/$alert1->anio/$tid", $agredidos->tsagredido->tsagredido)?></td>
+						<td>
+							<?php print $agredidos->agresion->agresion ?></td>
+						<td>
+							<?php Print html::link("reportes/medio_sistema/$alert1->anio/$agredidos->medio", $agredidos->medio) ?>
+						</td>
+
+						<td>
+							<?php Print html::link("reportes/tipo_medio_sistema/$alert1->anio/$agredidos->tipomediosistema_id", $agredidos->tipomediosistema->tipomediosistema) ?>
+						</td>
+					</tr>
+					<?php endforeach;?></tbody>
+			</table>
+		</div>
+
+		<div id="agresores">
+			<table class="table table-bordered table-hover">
+				<caption>Identificación de Tipos de Agresores</caption>
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Tipo de Agresor</th>
+						<th>Estado Judicial</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($alert1->
+					agresores as $agresores):?>
+					<tr>
+						<td>
+							<?php print $agresores->nombre ?></td>
+						<td>
+							<?php print $agresores->tagresor->tagresor ?></td>
+						<td>
+							<?php print $agresores->estadojudicial->estadojudicial ?></td>
+					</tr>
+					<?php endforeach?></tbody>
+			</table>
+		</div>
+	</div>
+
+	<hr />
+
+	<div id="relato">
+		<?php print $alert1->relato ?></div>
+</div>
+<div>
+	<?php view::partial('alertas/alertasfooter')?></div>

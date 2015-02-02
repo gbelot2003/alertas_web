@@ -1,0 +1,110 @@
+<?php if ($id == null && $gen == NULL): ?>
+
+<?php echo Tag::js('jquery.dataTables')?>
+<?php echo Tag::js('TableTools')?>
+<?php echo Tag::js('ZeroClipboard')?>
+<?php echo Tag::js('reportes/alertas.tablas')?>
+
+
+<?php
+
+$res1 = 0;
+$res2 = 0;
+$res3 = 0;
+$res4 = 0;
+	foreach($models as $coun):
+		$res1 = $res1 + $coun->m;
+		$res2 = $res2 + $coun->f;
+		$res3 = $res3 + $coun->l;
+		$res4 = $res4 + $coun->n;
+	endforeach;
+?>
+	<div id="enlaces"></div>
+
+	<div>
+		<?php View::partial("alertas/anios", NULL, array('page' => $pages, 'url' => $action_paht, 'anios' => $anios)) ?>
+	</div>
+	<hr />
+
+	<table class="table table-striped table-bordered" id="Worksheet1">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>Tipo de Sujeto Agredido</th>
+				<th>Hombres</th>
+				<th>Mujeres</th>
+				<th>LGTBI</th>
+				<th>N/A</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach($models as $model): ?>
+
+			<?php if($i % 2 == 0): ?>
+			 <tr class="odd">
+			<?php else: ?>
+			 <tr class="even">
+			<?php endif; ?>
+				<td><?php print $i++ ?></td>
+				<td><?php print html::link($action_paht."/".$anios."/".$model->id , $model->tsagredido) ?></td>
+				<td><?php print html::link($action_paht."/".$anios."/".$model->id."/1" , $model->m) ?></td>
+				<td><?php print html::link($action_paht."/".$anios."/".$model->id."/2" , $model->f) ?></td>
+				<td><?php print html::link($action_paht."/".$anios."/".$model->id."/3" , $model->l) ?></td>
+				<td><?php print html::link($action_paht."/".$anios."/".$model->id."/4" , $model->n) ?></td>
+			</tr>
+				<?php $serie1->addPoint(new Point("$model->tsagredido", $model->m)); ?>
+         		<?php $serie2->addPoint(new Point("$model->tsagredido", $model->f)); ?>
+         		<?php $serie3->addPoint(new Point("$model->tsagredido", $model->l)); ?>
+         		<?php $serie4->addPoint(new Point("$model->tsagredido", $model->n)); ?>
+
+			<?php endforeach; ?>
+
+			<tfoot>
+				<th colspan="2">Total</th>
+				<th><?php print $res1 ?></th>
+				<th><?php print $res2 ?></th>
+				<th><?php print $res3 ?></th>
+				<th><?php print $res4 ?></th>
+
+         		<?php $dataSet2->addPoint(new Point("Hombres", $res1)); ?>
+         		<?php $dataSet2->addPoint(new Point("Mujeres", $res2)); ?>
+         		<?php $dataSet2->addPoint(new Point("LGTBI", $res3)); ?>
+          		<?php $dataSet2->addPoint(new Point("N/A", $res4)); ?>
+
+			</tfoot>
+		</tbody>
+	</table>
+<?php
+		$dataSet->addSerie("Hombres", $serie1);
+        $dataSet->addSerie("Mujeres", $serie2);
+        $dataSet->addSerie("LGTBI", $serie3);
+        $dataSet->addSerie("N/A", $serie4);
+		$chart->setDataSet($dataSet);
+		$chart->getPlot()->setGraphPadding(new Padding(5, 10, 20, 200));
+		$chart->getPlot()->setCaptionPadding(new Padding(0, 25, 0, 0));     
+		$chart->setTitle("$title en el $anios");
+		$chart->render($localpath."/img/graficas/$action_name-$anios.png");
+
+		$chart2->setDataSet($dataSet2);
+		$chart2->getPlot()->setGraphPadding(new Padding(5, 30, 20, 200));
+		$chart2->setTitle("$title del año $anios ");
+		$chart2->render($localpath."/img/graficas/$action_name-$anios-2.png");
+
+?>
+	<hr />
+
+	<div class="span12">
+		<?php Print Html::link("img/graficas/$action_name-$anios-2.png", html::img("graficas/$action_name-$anios-2.png")) ?>
+	</div>
+
+<?php elseif(isset($id) && $gen == NULL): ?>
+
+	<div>
+		<?php View::partial('alertas/anios',FALSE, array('url' => "reportes/$action_name", 'id' => $id)); ?>	
+	</div>
+	<hr />
+
+		<?php Table::simple($header, $query,'class="table table-striped table-bordered"', 1) ?>
+<?php elseif((isset($id)) && (isset($gen))):?>
+		<?php Table::simple($header, $query,'class="table table-striped table-bordered"', 1) ?>
+<?php endif ?>

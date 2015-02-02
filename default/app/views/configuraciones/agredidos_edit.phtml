@@ -1,0 +1,47 @@
+<?php Print Form::open() ?>
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+    	<h4 id="myModalLabel">Editar Tipo de Sujeto Agredido</h4>
+	</div>
+
+  	<div class="modal-body">
+		<div class="control">
+  			<label>Nombre</label>
+  			<?php Print Form::text('agredidos.nombre', "class='span5'") ?>
+    		<?php Print Form::hidden('agredidos.id') ?>
+    		<?php Print Form::hidden('agredidos.alertas_id') ?>
+
+			<div class="row">
+			  	<div class="span3">
+			  		<label>Genero</label>
+			  		<?php Print Form::dbSelect('agredidos.gen_id') ?>
+			  	</div>
+
+			  	<div class="span3">
+			  		<label>Medio o Sistema</label>
+			  		<?php Print Form::text('agredidos.medio') ?>
+			  	</div>
+				<div class="span3">
+	  				<label>Tipo de Medio o Sistema</label>
+	  				<?php Print Form::dbSelect('agredidos.tipomediosistema_id') ?>
+	  			</div>
+
+	  			 <div class="span3">
+	  				<label>Tipo de Sujeto Agredido</label>
+	  				<?php Print Form::dbSelect('agredidos.tsagredido_id') ?>
+	  			</div>
+			  	<div class="span5">
+			  		<label>Agresión</label>
+			  		<?php Print Form::dbSelect('agredidos.agresion_id') ?>
+			  	</div>
+	  		</div>
+		</div>
+	</div>
+
+
+	<div class="modal-footer">
+		<?php Print Form::submit('Salvar Cambios', "class='btn btn-primary'") ?>
+		<!--<a class="btn btn-primary" onclick="$('.modal-body > form').submit();">Guardar Cambios</a>-->
+		<a class="btn" data-dismiss="modal">Close</a>
+	</div>
+<?php Print Form::close() ?>

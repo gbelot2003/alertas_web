@@ -1,0 +1,28 @@
+<?php View::partial('bootstrap/modal') ?>
+<div id="update_info" class="span11">
+<?php view::content() ?>
+
+<div class="well">
+	<div>
+		<?php Print html::link("configuraciones/otras", "<i class=' icon-arrow-left'></i> Regresar a Configuraciones", "class='btn btn-warning'") ?>
+		<?php Print html::link("tipomediosistema/add", "<i class='icon-plus'></i> Nuevo Tipo de Medio o Sistema", "id='add' class='btn btn-primary' data-toggle='modal' data-target='#myModal'") ?>
+	</div>
+</div>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>Tipo de Medio o  Sistema</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($tipomediosistema as $tipomediosistema): ?>
+		<tr>
+			<td><?php Print $tipomediosistema->id ?></td>
+			<td><?php Print html::link("tipomediosistema/edit/".$tipomediosistema->id, $tipomediosistema->tipomediosistema, "class='edit' data-toggle='modal' data-target='#myModal'") ?></td>
+			<td><?php Print Js::linkAction("del/".$tipomediosistema->id, '<i class="icon-remove"></i> Eliminar') ?></td>
+		</tr>
+		<?php endforeach ?>
+	</tbody>
+</table>
+</div>

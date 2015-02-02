@@ -1,0 +1,26 @@
+<!-- recordar cambiar el año y los meses por los datos en un confi.info luego -->
+<?php $resAños = 2012 ?>
+<?php $sum_alertas = Load::model("alertas")->count("id", "conditions: anio = $resAños AND publicada_id = 1") ?>
+<?php $estimado_mensual = round($sum_alertas/12, 2) ?>
+<?php $p_asesinados = Load::model('agredidos')->count("id", "conditions: tsagredido_id = 1 AND agresion_id = 1") ?>
+
+
+<h4>Estadisticas Generales</h4>
+<h4><small>Resultados del <?php Print $resAños ?></small></h4>
+
+<table class="table">
+	<tr>
+		<td><strong>Total de Alertas <?php Print $resAños ?></strong></td>
+		<td><?php Print $sum_alertas ?></td>
+	</tr>
+	<tr>
+		<td><strong>Promedio de Alertas Mensuales</strong></td>
+		<td><?php print $estimado_mensual ?></td>
+	</tr>
+
+	<tr>
+		<td><strong>Periodistas asesinados</strong></td>
+		<td><?php Print $p_asesinados ?></td>
+	</tr>
+</table>
+

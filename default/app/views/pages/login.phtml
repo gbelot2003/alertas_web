@@ -1,0 +1,27 @@
+<div>
+
+  <?php View::content() ?>
+
+</div>
+<fieldset>
+	<legend>Inicio de Sesión</legend>
+	<div class="span4 offset4">
+		<?php print Form::open()?>
+		    <label>Usuario</label>
+		    <div class="input-prepend">
+		    	<span class="add-on"><i class="icon-user"></i></span>
+		    	<?php print Form::text('usuario')?>
+		    </div>
+
+		    <div class="input-prepend">
+		    <label>Contraseña</label>
+		    	<span class="add-on"><i class="icon-lock"></i></span>
+		    	<?php print Form::pass('pw')?>
+		    </div>
+
+		    <p>
+		    	<?php print Form::submit('Ingresar', 'class="btn btn-primary"')?>
+			</p>
+		<?php print Form::close()?>
+	</div>
+</fieldset>

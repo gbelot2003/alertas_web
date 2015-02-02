@@ -1,0 +1,32 @@
+<?php Print Form::open() ?>
+
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+      <h3>Agregar Nueva Agresión</h3>
+  </div>
+
+  <div class="modal-body">
+    <div class="span4">
+      <label>Tipo de Agresor</label>
+      <?php Print Form::text("agresion.agresion", "class='span4'") ?>
+    </div>
+
+    <div class="span4">
+      <label>Categoria</label>
+      <?php Print Form::dbSelect("agresion.acategoria_id") ?>
+    </div>
+
+    <div class="span4">
+      <label>Descripción</label>
+      <?php Print Form::textarea("agresion.descripcion", "class='span5'")  ?>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <?php Print Form::submit('Salvar Cambios', "class='btn btn-primary'") ?>
+    <!--<a class="btn btn-primary" onclick="$('.modal-body > form').submit();">Guardar Cambios</a>-->
+    <a class="btn" data-dismiss="modal">Close</a>
+  </div>
+
+<?php Print Form::close() ?>

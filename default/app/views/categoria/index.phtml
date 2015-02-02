@@ -1,0 +1,29 @@
+
+<?php View::partial('bootstrap/modal') ?>
+<div id="update_info" class="span11">
+<?php view::content() ?>
+
+<div class="well">
+	<div>
+		<?php Print html::link("configuraciones/otras", "<i class=' icon-arrow-left'></i> Regresar a Configuraciones", "class='btn btn-warning'") ?>
+		<?php Print html::link("categoria/add", "<i class='icon-plus'></i> Nuevo Tipo de Categoria", "id='add' class='btn btn-primary' data-toggle='modal' data-target='#myModal'") ?>
+	</div>
+</div>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>Tipo de Categoria</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($acategoria as $acategoria): ?>
+		<tr>
+			<td><?php Print $acategoria->id ?></td>
+			<td><?php Print html::link("categoria/edit/".$acategoria->id, $acategoria->acategoria, "class='edit' data-toggle='modal' data-target='#myModal'") ?></td>
+			<td><?php Print Js::linkAction("del/".$acategoria->id, '<i class="icon-remove"></i> Eliminar') ?></td>
+		</tr>
+		<?php endforeach ?>
+	</tbody>
+</table>
+</div>

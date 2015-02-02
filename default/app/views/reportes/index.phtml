@@ -1,0 +1,67 @@
+<style type="text/css">
+	p {
+		text-align: justify;
+	}
+</style>
+
+<?php View::content(); ?>
+
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#1" data-toggle="tab">Instruciones para uso de reportes</a></li>
+		<li><a href="#2" data-toggle="tab">Instruciones para la descarga de archivos</a></li>
+		<li><a href="#3" data-toggle="tab">Metodologia</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="1">
+			<div class="row-fluid">
+				<div class="span11">
+
+					<div class="span11">
+						<p>Los diferentes formularios corresponden a la metodologia de clasificación que C-libre usa para mantener un conteo especifico de las alertas.</p>
+						<p>Los reportes disponibles se listan en el panel izquierdo, estos apuntan al ultimo año en el que se han introducido alertas.</p>
+						<p>En la parte superior de las alertas se encontrara una pestaña con los datos del año listado, puedes cambiar el año que refleja la información precionando cualquiera de los link listados en esa sección.</p>
+					</div>
+
+					<div class="span11"><?php print Html::img('info/anios.png',NULL ,"class='img-polaroid'") ?></div>
+
+					<div class="span11">
+					<p>&nbsp;</p>
+						<p>Dentro de cada tabla esta la lista con los resultados de cada categoria, estos llevan al listado de las alertas relacionadas con esa categoria y año especifico.</p>
+					</div>
+					<div class='span11'><?php print Html::img('info/links1.png', NULL, "class='img-polaroid'" ) ?><p>&nbsp;</p></div>
+					<div class='span11'><?php print Html::img('info/links2.png', NULL, "class='img-polaroid'" ) ?></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="tab-pane" id="2">
+			<div class="span11">
+				<p>Puedes descargar la información en pdf, exel, cvs o imprimir los informes facilmente</p>
+				<p>Solo tienes que presionar sobre los botones en la parte superior derecha de las tablas, debido a que el reporte se genera automaticamene no tendras que esperar ninguna recarga, la información aparecesa automaticamente el la carpeta donde salvastes dicho reporte.</p>
+				<p>&nbsp;</p>
+			</div>
+			<div class='span11'><?php print Html::img('info/links3.png', NULL, "class='img-polaroid'" ) ?></div>
+		</div>
+
+		<div class="tab-pane" id="3">
+
+<p>A partir de los registros de agresión, sobre los que se han emitido también las alertas nacionales e internacionales pertinentes, reunido el equipo del C-Libre hace las valoraciones para tipificar las circunstancias que acompañan cada caso, reconociendo en cada uno, la identificación de género y los datos generales de la víctima; la descripción de los hechos; nombre de la victima; tipo de sistema, medios o grupos de personas que denuncian;
+los autores supuestos de la agresión; el lugar y la fecha donde esta ocurrió. Las acciones descritas que se repiten en cada acto denunciado
+que perturba el derecho de libre expresión de las personas, se agrupan por categorías o tipos, con enfoque particular en las y los periodistas,
+grupos, medios y sistemas de comunicación.</p>
+
+<p>El tratamiento de los datos en este sistema se basa en las ideas de libertad de expresión como derecho fundamental constitucional, y
+reconocido en diferentes instrumentos internacionales que protegen los derechos humanos, reconocidas por la comunidad internacional.
+Incorporadas, constitucionalmente, como derecho interno nacional que obliga al estado a su cumplimiento.</p>
+
+<p>Las valoraciones jurídicas son orientaciones a priori principalmente del Artículo 19 de la Declaración Universal de los Derechos Humanos,
+lo discutido en la Declaración de Principios sobre Libertad de Expresión y su interpretación. Debe cuidarse de no asumirlas como catalogaciones
+jurídicas.</p>
+
+<blockquote>
+	<p>Se entiende como víctima a cualquier persona que en el ejercicio de su expresión sea impedida de iniciarlo o desarrollarlo, por un agente externo. Cualquiera que se involucra en los diferentes procesos de recopilación, elaboración y difusión de información. Cumplan un trabajo remunerado, o no (fotógrafas, editoras; propietarias, directivas). Sin importar el medio, por el que se realice (escrito,radial, televisivo, electrónico), sea este comercial,social, institucional, alternativo o comunitario</p>
+</blockquote>
+		</div>
+	</div>
+</div>

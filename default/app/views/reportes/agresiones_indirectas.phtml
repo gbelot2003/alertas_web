@@ -1,0 +1,77 @@
+
+<?php if ($id == null): ?>
+
+<?php echo Tag::js('jquery.dataTables')?>
+<?php echo Tag::js('TableTools')?>
+<?php echo Tag::js('ZeroClipboard')?>
+<?php echo Tag::js('reportes/alertas.tablas')?>
+
+
+	<div id="enlaces"></div>
+
+	<div>
+		<?php View::partial("alertas/anios", NULL, array('page' => $pages, 'url' => $action_paht, 'anios' => $anios))?>
+	</div>
+	<hr />
+
+	<table class="table table-striped table-bordered" id="Worksheet1">
+		<thead>
+			<?php if($i % 2 == 0): ?>
+			<tr class="odd">
+			<?php else: ?>
+			<tr class="even">
+			<?php endif; ?>
+				<th>id</th>
+				<th>Agresiones Directas</th>
+				<th>Cantidad</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach($categorias as $categorias): ?>
+			<tr>
+				<td colspan="3" style="background: #c0c0c0;">
+					<?php print $categorias->categoria ?></td>
+				<?php $agresion = load::model('agredidos')->agresiones_categorias($anios, $categorias->catId)?>
+
+
+				<?php foreach ($agresion as $agresion): ?>
+
+				<tr>
+					<td>
+						<?php print $i++ ?></td>
+					<td>
+						<?php print html::link($action_paht."/".$anios."/".$agresion->id , $agresion->agresion) ?></td>
+					<td>
+						<?php print $agresion->cantidad ?></td>
+				</tr>
+				<?php endforeach ?>
+				<tr>
+					<td colspan="2" style="border-top: black 1px solid; border-bottom: black 1px solid;"> <strong>Total</strong>
+					</td>
+					<td style="border-top: black 1px solid; border-bottom: black 1px solid;"> <strong><?php print $categorias->agredidos_total?></strong>
+					</td>
+					<tr></tr>
+					<?php $dataSet->
+					addPoint(new Point("$categorias->categoria", $categorias->agredidos_total)); ?>
+					<?php endforeach?></tbody>
+			</table>
+			<hr />
+	<?php
+		$chart->
+			setDataSet($dataSet);
+		$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 140));
+		$chart->setTitle("$title del año $anios ");
+		$chart->render($localpath."/img/graficas/$action_name-$anios.png");
+	 ?>
+			<div class="span11">
+				<?php //echo html::img("graficas/$action_name-$anios-2.png") ?>
+				<?php Print Html::link("img/graficas/$action_name-$anios.png", html::img("graficas/$action_name-$anios.png")) ?>
+			</div>
+
+<?php else: ?>
+	<div>
+		<?php View::partial('alertas/anios',FALSE, array('url' => "reportes/$action_name", 'id' => $id)); ?>	
+	</div>
+	<hr />
+	<?php Table::simple($header, $query,'class="table table-striped table-bordered"', 1) ?>
+<?php endif; ?>

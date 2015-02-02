@@ -1,0 +1,34 @@
+<?php Print Form::open() ?>
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+      <h4 id="myModalLabel">Editar Tipo de Sujeto Agredido</h4>
+  </div>
+
+    <div class="modal-body">
+    <div class="control">
+        <label>Nombre</label>
+        <?php Print Form::text('agresores.nombre', "class='span5'") ?>
+        <?php Print Form::hidden('agresores.id') ?>
+        <?php Print Form::hidden('agresores.alertas_id') ?>
+
+      <div class="row">
+          <div class="span5">
+            <label>Tipo de Agresor</label>
+            <?php Print Form::dbSelect('agresores.tagresor_id', NULL, NULL, NULL, "class='span5'") ?>
+          </div>
+
+          <div class="span6">
+            <label>Estado Judicial</label>
+            <?php Print Form::dbSelect('agresores.estadojudicial_id') ?>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="modal-footer">
+    <?php Print Form::submit('Salvar Cambios', "class='btn btn-primary'") ?>
+    <!--<a class="btn btn-primary" onclick="$('.modal-body > form').submit();">Guardar Cambios</a>-->
+    <a class="btn" data-dismiss="modal">Close</a>
+  </div>
+<?php Print Form::close() ?>

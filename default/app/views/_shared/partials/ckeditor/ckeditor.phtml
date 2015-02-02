@@ -1,0 +1,27 @@
+<?php
+# CKEDITOR, EDITOR WYSIWYG. DESCARGA: http://ckeditor.com/download
+echo Tag::js( 'ckeditor/ckeditor' );
+# CKFINDER, EXPLORADOR DE ARCHIVOS. DESCARGA: http://ckfinder.com/download
+echo Tag::js( 'ckfinder/ckfinder' );
+?>
+<script>
+// RUTA DEL CKFINDER. FEATURES: http://docs.cksource.com/ckfinder_2.x_api/
+CKFinder.setupCKEditor( CKEDITOR, '../javascript/ckfinder/' );
+ 
+// CLASES PARA VERLAS REFLEJADAS EN EL CKEDITOR
+CKEDITOR.config.contentsCss = [ 'alertas5/css/alertas/style.css' ];
+ 
+// CLASES PARA ELEGIR EN EL CKEDITOR QUE ESTEN EN LOS ARCIVOS QUE PUSISTE EN CKEDITOR.config.contentsCss
+CKEDITOR.config.stylesSet =
+[
+	// CADA LINEA DE ESTAS ES UNA CLASE TUYA PERSONALIZADA DE TU STYLE O ARCHIVO CSS
+	{ name : 'blue', element : 'span', attributes : { 'class' : 'blue' } },
+	// RECUERDA. LA ULTIMA LINEA SIN COMA XD
+	{ name : 'red', element : 'span', attributes : { 'class' : 'red' } }
+];
+
+CKEDITOR.config.bodyId = 'alertas_contenido';
+ 
+// PARA CONFIGURAR LA ALTURA DEL TEXTAREA. MAS FEATURES: 
+CKEDITOR.config.height = 400;
+</script>
